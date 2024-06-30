@@ -1,0 +1,50 @@
+.center-div{
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    text-align: center;
+}
+
+.center-div{
+    margin-top: 3rem;
+    height: 50rem;
+}
+
+.section-login{
+    background-color: rgb(229, 239, 239);
+    width: 60rem;
+    height: 60rem;
+    border: 2px solid black;
+    border-radius:2rem;
+}
+
+#login-title{
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+    margin: 20px;
+}
+
+
+.login-label{
+    font-weight: 600;
+    margin: 15px;
+}
+
+.alert-message{
+    background-color: rgb(227, 94, 94);
+    border: 1px solid rgb(104, 2, 2);
+    border-radius: 10px; 
+    padding-top: 10px;
+    color: rgb(91, 0, 0);
+    max-width: 70%;
+}
+
+.alert-message{
+    position: relative;
+    left: 5rem;
+}
+
+
+.row *{
+    margin-bottom: 1.3rem;
+}

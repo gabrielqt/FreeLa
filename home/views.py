@@ -7,7 +7,7 @@ from django.views.generic import ListView
 from django.contrib.auth import logout, authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
-# from home.forms import signup
+from home.forms import CustomUserCreationForm
 # Create your views here.
 
 class Home (ListView):
@@ -41,7 +41,7 @@ def login_page(request):
             password = request.POST['password']
             user = authenticate(request=request, username=username, password=password)
             if user is not None:
-                login(request,user)
+                login(request=request, user=user)
                 return redirect('home')
             else:
                 messages.error(request, 'Please insert correct username and password.')
@@ -53,12 +53,24 @@ def login_page(request):
     return render(request,'login.html', context={'form':form} )
 
 
+
 def signup_page(request):
     
-    form = signup()
+    form = CustomUserCreationForm(request.POST, request.FILES)
 
+    if request.method == 'POST':
+        if form.is_valid():
+            user = form.save()
+            login(user)
+            return redirect(request,'home')
+        else:
+            messages.error(request,'Please fill the fields correctly.')
+            
+    else:
+        form = CustomUserCreationForm(request.POST, request.FILES)
     
-    
+    return render(request, 'signup.html', context={'form':form})
+        
 
 def logout_(request):
     

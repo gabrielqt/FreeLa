@@ -1,0 +1,173 @@
+{% extends "base.html" %}
+{% block title %}Register{% endblock %}
+{% load static %}
+
+{%block extra_styles%}<link rel="stylesheet", href="{% static "/css/signup.css" %}">{%endblock%}
+
+{% block content %}
+    <div class="center-div">
+        <section class="section-login">
+            <h2 id="login-title">Register</h2>
+
+
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert-message">
+                        <p>{{message}} <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-patch-exclamation-fill" viewBox="0 0 16 16">
+                            <path d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01zM8 4c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995A.905.905 0 0 1 8 4m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+                          </svg>
+                        </p> 
+                    </div>
+                {% endfor %}
+                <br></br>
+            {% endif %}
+
+
+
+            <form method="post">
+              {% csrf_token %}
+                <div class="container text-center">
+                    <div class="row align-items-center">
+                      <div class="col">
+
+                        <div class="input-group mb-3">
+                            <div class="form-floating">
+                              <input type="text" class="form-control" id="floatingInputGroup1" placeholder="Username" name="username">
+                              <label for="floatingInputGroup1">Username</label>
+                            </div>
+                          </div>
+                        
+                          <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="floatingInput" placeholder="Fulano" name="first_name">
+                            <label for="floatingInput">First Name</label>
+                          </div>
+
+                          <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="floatingInput" placeholder="Fulano" name="last_name">
+                            <label for="floatingInput">Last Name</label>
+                          </div>
+
+                          <select class="form-select" aria-label="Default select example" style="
+                          max-width:8rem;
+                          margin-left: 10rem;
+                          " name="genre">
+                            <option selected>Genre</option>
+                            <option value="1">M</option>
+                            <option value="2">F</option>
+                          </select>
+
+                          <div class="form-check form-switch">
+                            <label class="form-check-label" for="flexSwitchCheckDefault">Check this button if you just wanna hire jobs</label>
+                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" name="is_contractor">
+                          </div>
+                          
+                          <div class="mb-3">
+                            <label for="formFile" class="form-label">Input your profile picture:</label>
+                            <input class="form-control" type="file" id="formFile" name="profile_pic">
+                          </div>
+                          
+                          <div>
+                            <label for="id_birth_date" style="margin-top:1.5rem;">Birth Date:</label>
+                            {{form.birth_date}}
+                          </div>
+                          <div class="form-floating mb-3">
+                            <input type="tel" class="form-control" id="floatingInput" placeholder="Fulano" name="phone">
+                            <label for="floatingInput">Phone Number</label>
+                          </div>
+                          <div class="input-group">
+                            <span class="input-group-text">Description</span>
+                            <textarea class="form-control" aria-label="With textarea"></textarea>
+                          </div>
+                          
+                      </div>
+
+                      <div class="col">
+                        <select class="form-select" aria-label="Default select example" name="uf" aria-describedby="id_uf_helptext" id="id_uf">
+                          <option value="" selected="">UF</option>
+                          <option value="AC">Acre</option>
+                          <option value="AL">Alagoas</option>
+                          <option value="AP">Amapá</option>
+                          <option value="AM">Amazonas</option>
+                          <option value="BA">Bahia</option>
+                          <option value="CE">Ceará</option>
+                          <option value="DF">Distrito Federal</option>
+                          <option value="ES">Espírito Santo</option>
+                          <option value="GO">Goiás</option>
+                          <option value="MA">Maranhão</option>
+                          <option value="MT">Mato Grosso</option>
+                          <option value="MS">Mato Grosso do Sul</option>
+                          <option value="MG">Minas Gerais</option>
+                          <option value="PA">Pará</option>
+                          <option value="PB">Paraíba</option>
+                          <option value="PR">Paraná</option>
+                          <option value="PE">Pernambuco</option>
+                          <option value="PI">Piauí</option>
+                          <option value="RJ">Rio de Janeiro</option>
+                          <option value="RN">Rio Grande do Norte</option>
+                          <option value="RS">Rio Grande do Sul</option>
+                          <option value="RO">Rondônia</option>
+                          <option value="RR">Roraima</option>
+                          <option value="SC">Santa Catarina</option>
+                          <option value="SP">São Paulo</option>
+                          <option value="SE">Sergipe</option>
+                          <option value="TO">Tocantins</option>
+                        </select>
+
+                        <div class="form-floating mb-3">
+                          <input type="text" class="form-control" id="floatingInput" name="City">
+                          <label for="floatingInput">City</label>
+                        </div>
+
+                        <div>
+                          <label for="id_job"> Select your job:</label>
+                          <select class="form-select" multiple aria-label="Multiple select example" name="job" required="" aria-invalid="true" id="id_job">
+                            <option value="1">Carpenter</option>
+                            <option value="2">Electrician</option>
+                            <option value="3">Cook</option>
+                            <option value="4">Manual Work</option>
+                            <option value="5">Mechanic</option>
+                            <option value="6">Cleaner</option>
+                            <option value="7">Babysitter</option>
+                            <option value="8">Driver</option>
+                            <option value="9">Blacksmith</option>
+                          </select>
+                          <small style="
+                          color:grey; position:relative; bottom:1rem;
+                          ">Hold "CTRL" to select more than one</small>                        
+                        </div>
+
+                        <div class="input-group mb-3">
+                          <span class="input-group-text">$</span>
+                          <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)"
+                          name="price_average" id="id_price_average">
+                          <span class="input-group-text">.00</span>
+                        </div>
+                        <small for="id_price_average" style="
+                        color:grey; position:relative; bottom:2.5rem;
+                        ">Type your price average</small>
+                                               
+                        <div class="form-floating">
+                          <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com" name="email">
+                          <label for="floatingInputGrid">Email address</label>
+                        </div>
+                    
+                        <div class="form-floating">
+                          <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password1">
+                          <label for="floatingPassword">Password</label>
+                        </div>
+
+                        <div class="form-floating">
+                          <input type="password" class="form-control" id="floatingPassword" placeholder="Password Confirmation" name="password2">
+                          <label for="floatingPassword">Password Confirmation</label>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                          <button class="btn btn-primary" type="submit" style="background-color:black">Submit</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+        </section>
+    </div>
+{% endblock %}

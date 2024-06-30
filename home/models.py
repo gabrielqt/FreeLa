@@ -17,6 +17,8 @@ class CustomUser(AbstractUser):
     genre = models.ForeignKey('Genre', related_name='users', on_delete=models.SET_NULL, null=True,blank=True)
     price_average = models.FloatField(_('Price Average'), blank=True, null=True)
     is_contractor = models.BooleanField(_('Is Contractor'), default=True, help_text='Check this box if you want hire a job instead make a freelancer')
+    email = models.EmailField('E-mail')
+    
     
     brazil_states = (
     ('AC', 'Acre'),
