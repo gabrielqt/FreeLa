@@ -1,0 +1,57 @@
+.profile_pic{
+    clip-path: circle(50%);
+    object-fit: cover;
+    max-width: 15rem;
+    margin-top: 1rem;
+    position: relative;
+    right: 6.5rem;
+    border: 2px solid black;
+    border-radius: 50%;
+}
+
+.container{
+    background-color: aliceblue;
+    border-radius: 20px;
+    height: 30rem;
+}
+
+.person_name{
+    font-weight: bold;
+    position: relative;
+    left: 60px;
+    margin-top: 0.9rem;
+    font-size: 1.5rem;
+}
+
+.proposal{
+    background-color:  #dab409 ; color: white; font-weight: 700;
+    position: relative;
+    left: 60px;
+}
+
+
+.description{
+    display: flex;
+    position: relative;
+    right: 200px;
+    margin-top: 1.5rem;
+    font-size: 1.2rem;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ;
+}
+
+
+.quote{
+    font-weight:bold; font-style:italic; font-size:3rem;
+}
+
+.jobs{
+    color: gray;
+    font-weight: 600;
+    position: relative;
+    left: 3.2rem;
+    margin-top: 1rem;
+}
+
+.userjobs{
+    bottom: 2rem;
+}

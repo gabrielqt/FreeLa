@@ -1,11 +1,13 @@
 from typing import Any
+from django.db.models.base import Model as Model
 from django.db.models.query import QuerySet
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from home.models import CustomUser
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from django.contrib.auth import logout, authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from home.forms import CustomUserCreationForm
 # Create your views here.
@@ -56,18 +58,19 @@ def login_page(request):
 
 def signup_page(request):
     
-    form = CustomUserCreationForm(request.POST, request.FILES)
+
 
     if request.method == 'POST':
+        form = CustomUserCreationForm(request.POST, request.FILES)
         if form.is_valid():
             user = form.save()
-            login(user)
-            return redirect(request,'home')
+            login(request=request,user=user)
+            return redirect('home')
         else:
             messages.error(request,'Please fill the fields correctly.')
             
     else:
-        form = CustomUserCreationForm(request.POST, request.FILES)
+        form = CustomUserCreationForm()
     
     return render(request, 'signup.html', context={'form':form})
         
@@ -77,3 +80,14 @@ def logout_(request):
     logout(request)
     
     return redirect('home')
+
+
+
+class MyProfile(DetailView, LoginRequiredMixin):
+    
+    model = CustomUser
+    template_name = 'registration/profile.html'
+    context_object_name = 'user'
+    
+    def get_object(self, queryset: QuerySet[Any] | None = ...) -> Model:
+        return self.request.user

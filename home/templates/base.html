@@ -24,7 +24,7 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page"
-                 href={% if user.is_authenticated%}"#"{% else %}{% url "login" %}{% endif %}>
+                 href={% if user.is_authenticated%}"{% url "profile" %}"{% else %}{% url "login" %}{% endif %}>
 
                   <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" style="margin-left:1rem;margin-right:1rem;" class="bi bi-person-arms-up" viewBox="0 0 16 16">
                     <path d="M8 3a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3"/>

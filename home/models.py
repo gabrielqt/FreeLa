@@ -11,7 +11,7 @@ class CustomUser(AbstractUser):
     profile_pic = models.ImageField(_('Profile Picture'), upload_to='profile_img/',blank=True, default='/profile_img/standard.png')
     birth_date = models.DateField(_('Birth Date'), null=True,blank=True)
     phone = models.CharField(_('Phone Number'), max_length=15,help_text='Type your number')
-    description = models.TextField(_('Description'), max_length=600, blank=True, null=True)
+    description = models.TextField(_('Description'), max_length=350, blank=True, null=True)
     city = models.CharField(max_length=70, blank=True, null=True)
     job = models.ManyToManyField('Job', related_name='users')
     genre = models.ForeignKey('Genre', related_name='users', on_delete=models.SET_NULL, null=True,blank=True)

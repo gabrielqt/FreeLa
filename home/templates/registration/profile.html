@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_styles %}<link rel="stylesheet" href="{% static "/css/profile.css" %}">{% endblock %}
+
+{% block content %}
+    <br></br>
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-sm-7">
+                <img class="profile_pic" src="{{user.profile_pic.url}}">
+            </div>
+            <div class="col-sm-5 description">
+                <p class="quote">"&nbsp</p>
+                <p>{{user.description}}</p>
+                <p class="quote">"&nbsp</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm">
+                <p class="person_name">{{user.first_name}} {{user.last_name}}</p>
+                <a href="#"><button type="button" class="btn btn-outline-warning proposal">
+                    Make a Proposal</button>
+                </a>
+                <br>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-briefcase-fill jobs" viewBox="0 0 16 16" style="margin-bottom:16px">
+                    <path d="M6.5 1A1.5 1.5 0 0 0 5 2.5V3H1.5A1.5 1.5 0 0 0 0 4.5v1.384l7.614 2.03a1.5 1.5 0 0 0 .772 0L16 5.884V4.5A1.5 1.5 0 0 0 14.5 3H11v-.5A1.5 1.5 0 0 0 9.5 1zm0 1h3a.5.5 0 0 1 .5.5V3H6v-.5a.5.5 0 0 1 .5-.5"/>
+                    <path d="M0 12.5A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5V6.85L8.129 8.947a.5.5 0 0 1-.258 0L0 6.85z"/>
+                  </svg>
+                <p class="jobs userjobs">{% for job in user.job.all %}{{job}} {% if not forloop.last %} - {% endif %}{% endfor %}</p>
+
+            </div>
+            <div class="col-sm">{% for job in user.job.all %}{{job}}{% endfor %}</div>
+            <div class="col-sm">col-sm</div>
+        </div>
+    </div>
+    
+    
+{% endblock %}
