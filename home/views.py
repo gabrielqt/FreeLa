@@ -91,3 +91,10 @@ class MyProfile(DetailView, LoginRequiredMixin):
     
     def get_object(self, queryset: QuerySet[Any] | None = ...) -> Model:
         return self.request.user
+    
+class ProfileDetail(DetailView, LoginRequiredMixin):
+    
+    model = CustomUser
+    template_name = 'registration/profile-detail.html'
+    context_object_name = 'user'
+    
