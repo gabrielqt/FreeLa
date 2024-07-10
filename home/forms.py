@@ -1,7 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm
 from home.models import CustomUser
 from django import forms
-
+from home.models import Proposal
 
 class CustomUserCreationForm(UserCreationForm):
     
@@ -19,3 +19,9 @@ class CustomUserCreationForm(UserCreationForm):
         }
         
     
+class ProposalForm(forms.ModelForm):
+    
+    class Meta:
+        model = Proposal
+        fields = ['title','details']
+        

@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.utils.translation import gettext_lazy as _
 from django.urls import reverse
-
+from datetime import date
 # Create your models here.
 
 
@@ -103,9 +103,10 @@ class Proposal(models.Model):
     
     title = models.CharField(_('Title'), max_length=40, blank=False)
     details = models.CharField(_('Details'), max_length=600, blank=False)
-    contractor = models.ForeignKey('CustomUser', on_delete=models.CASCADE, related_name='proposals')
-
+    contractor = models.ForeignKey('CustomUser', on_delete=models.CASCADE, related_name='proposals_made')
+    freelancer = models.ForeignKey('CustomUser',on_delete=models.CASCADE, related_name='proposals_receive', default=0)
 
     def get_absolute_url(self):
         return reverse("proposal-detail", args=[str(self.id)])
+    
     

@@ -1,0 +1,55 @@
+.center-div{
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+}
+
+.section-proposal{
+    background-color: rgb(229, 239, 239);
+    width: 60rem;
+    height: 30rem;
+    border: 2px solid black;
+    border-radius:2rem;
+}
+
+.section-proposal{
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+}
+
+.center-div{
+    margin: 5rem;
+}
+
+.form-proposal{
+    display: block;
+}
+
+#title{
+    border-radius: 10px;
+    margin-left: 1rem;
+    width: 16rem;
+}
+
+.title{
+    display: flex;
+    justify-content: center;
+}
+
+#description{
+    border-radius: 10px;
+    margin: 1rem;
+    width: 45rem;
+    height: 14rem;
+}
+
+.description{
+    display: flex;
+    justify-content: center;
+}
+
+.description > label:nth-child(1) > strong:nth-child(1){
+    position: relative;
+    top: 1rem;
+}
