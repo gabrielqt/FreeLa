@@ -25,3 +25,8 @@ class ProposalForm(forms.ModelForm):
         model = Proposal
         fields = ['title','details']
         
+        
+class EditProfileForm(forms.ModelForm):
+
+    class Meta:
+        model = CustomUser

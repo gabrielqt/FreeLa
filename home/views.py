@@ -19,7 +19,7 @@ from django.shortcuts import get_object_or_404
 class Home (ListView):
     
     model = CustomUser
-    paginate_by = 10
+    paginate_by = 9
     template_name = 'home.html'
     context_object_name = 'users'
 
@@ -49,7 +49,8 @@ class ProposalCreate(LoginRequiredMixin, CreateView):
         form.instance.freelancer = freelancer
         
         response = super().form_valid(form) #salva o formulário
-        messages.success(f'Proposal sent to {freelancer.first_name}')
+        
+        messages.success(self.request, f'Proposal sent to {freelancer.first_name}')
         
         return response
         
