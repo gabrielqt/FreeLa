@@ -105,7 +105,8 @@ class Proposal(models.Model):
     details = models.CharField(_('Details'), max_length=600, blank=False)
     contractor = models.ForeignKey('CustomUser', on_delete=models.CASCADE, related_name='proposals_made')
     freelancer = models.ForeignKey('CustomUser',on_delete=models.CASCADE, related_name='proposals_receive', default=0)
-
+    status = models.CharField(_('Status'), default='waiting', max_length=8)
+    
     def get_absolute_url(self):
         return reverse("proposal-detail", args=[str(self.id)])
     

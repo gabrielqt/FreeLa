@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load static %}
+{% block extra_styles %}
+    <link rel="stylesheet" href={% static "/css/proposals-list.css" %}>
+{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            {% for p in proposals %}
+                <div class="col-md-4 d-flex align-items-stretch">
+                    <div class="proposal">
+                        <div class="content">
+                            <div class="row">
+                                <a class="title" href=# >{{p.title}}</a>
+                            </div>
+                            <div class="row">
+                                <p class="details">{{p.details|truncatechars:200}}</p>
+                            </div>
+                            <div class="row">
+                                <a class="contractor" href="{% url "user-detail" pk=p.contractor.id %}"> - {{p.contractor.first_name}}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% if forloop.counter|divisibleby:3 and not forloop.last %}
+                    </div><div class="row">
+                {% endif %}
+            {% empty %}
+            <div class="position-relative">
+                <div class="position-absolute top-100 start-50 translate-middle">
+                    <div class="alert alert-warning" role="alert" style="max-width: 20rem; width: 100%; text-align: center; font-size: 18px;">
+                        No Proposals
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+    {% if is_paginated %}
+        <div class="pagination">
+        <span class="page-links">
+            {% if page_obj.has_previous %}
+            <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">
+                <button class="btn_page">Previous</button>
+            </a>
+            {% endif %}
+            <span class="page-current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            </span>
+            {% if page_obj.has_next %}
+            <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">
+                <button class="btn_page">Next</button>
+            </a>
+            {% endif %}
+        </span>
+        </div>
+    {% endif %}
+
+{% endblock %}

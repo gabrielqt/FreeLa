@@ -10,5 +10,6 @@ urlpatterns = [
     path('profile/edit', views.edit_profile,name='profile-edit'),
     path('profile/<int:pk>/', views.ProfileDetail.as_view(),name='user-detail'),
     path('proposal/create/<int:freelancer_id>/', views.ProposalCreate.as_view(), name='proposal-create'),
+    path('profile/proposals/', views.AcProposalList.as_view(),name='proposal-list'),
 ]
 

@@ -68,6 +68,21 @@ class ProposalCreate(LoginRequiredMixin, CreateView):
 
 
 
+class AcProposalList(LoginRequiredMixin, ListView):
+    
+    model = Proposal
+    template_name = 'proposal_list.html'
+    context_object_name = 'proposals'
+    paginate_by = 6
+    
+    def get_queryset(self):
+        freelancer = self.request.user
+        return Proposal.objects.filter(freelancer=freelancer.id, status='waiting')
+    
+
+
+
+
 ''' Authenticate Views:'''
 
 def login_page(request):

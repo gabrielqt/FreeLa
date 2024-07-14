@@ -1,0 +1,49 @@
+.btn_page{
+    background-color: black;
+    border: 2px solid grey;
+    border-radius: 2px;
+    color: white;
+    font-weight: bold;
+}
+
+.proposal{
+    background-color: aliceblue;
+    min-width: 23rem;
+    min-height: 14rem;
+    border: 2px solid black;
+    border-radius: 5px;
+    margin: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.title{
+    text-decoration: none;
+    color: black;
+    font-weight: 700;
+    margin-top: 1rem;
+    font-size: 1.3rem;
+}
+
+
+.title:hover{
+    color: grey;
+}
+
+.details{
+    padding: 1rem;
+}
+
+.contractor{
+    text-decoration: none;
+    color: black;
+    font-weight: 600;
+    font-style: italic;
+    margin: 1rem;
+}
+
+
+.contractor:hover{
+    color: grey;
+    
+}
