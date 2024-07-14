@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static %}
+{% block extra_styles %}<link rel="stylesheet" href="{% static "/css/edit-profile.css" %}">{% endblock %}
+
+{% block content %}
+
+    
+    <div class="center-div">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{form.as_p}}
+            
+            <div class="d-grid gap-2">
+                <button class="btn btn-primary" type="submit" style="background-color:black">Submit</button>
+              </div>
+
+{% endblock %}

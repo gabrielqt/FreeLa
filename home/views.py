@@ -10,7 +10,7 @@ from django.contrib.auth import logout, authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
-from home.forms import CustomUserCreationForm, ProposalForm
+from home.forms import CustomUserCreationForm, ProposalForm, EditProfileForm
 from django.urls import reverse_lazy
 from django.shortcuts import get_object_or_404
 
@@ -134,3 +134,18 @@ class ProfileDetail(LoginRequiredMixin,DetailView):
     template_name = 'registration/profile-detail.html'
     context_object_name = 'user'
     
+
+def edit_profile(request):
+    
+    if request.method == 'POST':
+        form = EditProfileForm(request.POST, request.FILES, instance=request.user)
+        
+        if form.is_valid():
+            form.save(commit=True)
+            return redirect('profile')
+    else:
+        form = EditProfileForm(instance=request.user)
+    
+            
+    return render(request, 'registration/edit-profile.html', context={'form':form, 'user':request.user})
+        

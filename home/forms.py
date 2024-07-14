@@ -30,3 +30,6 @@ class EditProfileForm(forms.ModelForm):
 
     class Meta:
         model = CustomUser
+        fields = [
+            'profile_pic','phone','description','uf','city','job','price_average','email'
+                  ]
