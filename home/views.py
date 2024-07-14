@@ -7,6 +7,7 @@ from home.models import CustomUser, Proposal
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView
 from django.contrib.auth import logout, authenticate, login
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
@@ -82,6 +83,40 @@ class AcProposalList(LoginRequiredMixin, ListView):
 
 
 
+class ProposalDetail(LoginRequiredMixin, DetailView):
+    
+    model = Proposal
+    template_name = 'proposal-detail.html'
+    context_object_name = 'proposal'
+    
+
+@login_required
+def delete_proposal(request, pk):
+    
+    proposal = get_object_or_404(Proposal, pk=pk)
+    
+    if request.user == proposal.freelancer or proposal.contractor:
+        proposal.delete()
+        messages.success(request,'Proposta finalizada.')
+    else:
+        messages.success(request,'Proposta não finalizada.')
+    
+    return redirect('profile')
+
+
+class Search(ListView):
+    
+    model = CustomUser
+    template_name = 'search.html'
+    context_object_name = 'users'
+
+    def get_queryset(self) -> QuerySet[Any]:
+        
+        query = self.request.GET.get('q')
+        if query:
+            return CustomUser.objects.filter(job__name__iexact=query) | CustomUser.objects.filter(city__iexact=query) | CustomUser.objects.filter(first_name__icontains=query) | CustomUser.objects.filter(description__icontains= query)
+        else:
+            return CustomUser.objects.all()
 
 ''' Authenticate Views:'''
 

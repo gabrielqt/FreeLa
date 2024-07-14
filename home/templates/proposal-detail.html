@@ -1,0 +1,39 @@
+
+
+{% extends "base.html" %}
+{%block title%}Proposal{%endblock%}
+{% load static %}
+{%block extra_styles%}<link rel="stylesheet", href="{% static "/css/proposal.css" %}">{%endblock%}
+
+{% block content %}
+    <div class="center-div">    
+
+        <section class="section-proposal" >
+            <div class="content">
+                <div class="row"> 
+                    <h1 style="
+                    margin-top:1rem; display:flex;justify-content:center;
+                    ">{{proposal.title}}</h1>
+                </div>
+                <div class="row" style="padding:2rem; font-size:1.2rem;">
+                    <p>{{proposal.details}}</p>
+                </div>
+                <div class="row" style="padding:2rem; font-size:1.2rem;">
+                    <div class="row">
+                        <a id="contractor" style="    text-decoration: none;
+                                                        color: black;
+                                                        font-weight: 600;
+                                                        font-style: italic;
+                                                        margin: 1rem; 
+    " href="{% url "user-detail" pk=proposal.contractor.id %}"> - {{proposal.contractor.first_name}}</a>
+                    </div>
+                
+                <form method="post" action="{% url "delete-proposal" pk=proposal.id %} " style="    display: flex;justify-content: center;">
+                    {% csrf_token %}
+                        <button type="submit" class="finish_job"> Finish Job </button>
+                </form>
+                </div>
+            </div>
+        </section>
+{% endblock%}
+

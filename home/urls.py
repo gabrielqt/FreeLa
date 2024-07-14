@@ -9,7 +9,15 @@ urlpatterns = [
     path('profile/', views.MyProfile.as_view(),name='profile'),
     path('profile/edit', views.edit_profile,name='profile-edit'),
     path('profile/<int:pk>/', views.ProfileDetail.as_view(),name='user-detail'),
+    path('proposal/<int:pk>/', views.ProposalDetail.as_view(), name='proposal-detail'),
     path('proposal/create/<int:freelancer_id>/', views.ProposalCreate.as_view(), name='proposal-create'),
     path('profile/proposals/', views.AcProposalList.as_view(),name='proposal-list'),
 ]
 
+
+'''   Actions:    '''
+
+urlpatterns += [
+    path('delete-proposal/<int:pk>', views.delete_proposal, name='delete-proposal'),
+    path('search/', views.Search.as_view(), name = 'search'),
+]

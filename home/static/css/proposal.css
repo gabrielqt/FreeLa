@@ -53,3 +53,31 @@
     position: relative;
     top: 1rem;
 }
+
+
+#contractor{
+    text-decoration: none;
+    color: black;
+    font-weight: 600;
+    font-style: italic;
+    margin: 1rem;
+}
+
+
+#contractor:hover{
+    color: grey;
+    
+}
+
+.finish_job{
+    background-color: rgba(233, 2, 2, 0.74);
+    min-width: 15rem;
+    border: 2px solid black;
+    border-radius: 4px;
+    font-weight: bold;
+    }
+
+.finish_job:hover{
+    background-color: rgb(212, 54, 54);
+    color: white;
+}
