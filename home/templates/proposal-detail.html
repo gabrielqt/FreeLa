@@ -28,10 +28,22 @@
     " href="{% url "user-detail" pk=proposal.contractor.id %}"> - {{proposal.contractor.first_name}}</a>
                     </div>
                 
-                <form method="post" action="{% url "delete-proposal" pk=proposal.id %} " style="    display: flex;justify-content: center;">
-                    {% csrf_token %}
-                        <button type="submit" class="finish_job"> Finish Job </button>
-                </form>
+                    {%if proposal.status == 'accepted' %}
+                        <form method="post" action="{% url "delete-proposal" pk=proposal.id %} " style="    display: flex;justify-content: center;">
+                            {% csrf_token %}
+                                <button type="submit" class="finish_job"> Finish Job </button>
+                        </form>
+
+                    {% else %}
+                        <form method="post" action="{% url "accept-proposal" pk=proposal.id %} " style="    display: flex;justify-content: center;">
+                            {% csrf_token %}
+                                <button type="submit" class="finish_job" style="background-color:green;"> Accept </button>
+                        </form>
+                        <form method="post" action="{% url "delete-proposal" pk=proposal.id %} " style="    display: flex;justify-content: center; margin-top:1rem">
+                            {% csrf_token %}
+                                <button type="submit" class="finish_job"> Recuse </button>
+                        </form>
+                    {%endif%}
                 </div>
             </div>
         </section>

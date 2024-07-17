@@ -32,6 +32,8 @@ class Home (ListView):
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
         context = super().get_context_data()
         context['user'] = self.request.user
+        
+        
         return context
     
 
@@ -69,7 +71,7 @@ class ProposalCreate(LoginRequiredMixin, CreateView):
 
 
 
-class AcProposalList(LoginRequiredMixin, ListView):
+class ProposalList(LoginRequiredMixin, ListView):
     
     model = Proposal
     template_name = 'proposal_list.html'
@@ -78,7 +80,8 @@ class AcProposalList(LoginRequiredMixin, ListView):
     
     def get_queryset(self):
         freelancer = self.request.user
-        return Proposal.objects.filter(freelancer=freelancer.id, status='waiting')
+        status = self.kwargs.get('status')
+        return Proposal.objects.filter(freelancer=freelancer.id, status=status)
     
 
 
@@ -103,6 +106,18 @@ def delete_proposal(request, pk):
     
     return redirect('profile')
 
+@login_required
+def accept_proposal(request, pk):
+    
+    proposal = get_object_or_404(Proposal, pk=pk)
+    
+    if proposal.freelancer == request.user:
+        proposal.status = 'accepted'
+        proposal.save()
+        messages.success(request,'Proposal accepted.')
+    
+    return redirect('profile')
+
 
 class Search(ListView):
     
@@ -114,9 +129,9 @@ class Search(ListView):
         
         query = self.request.GET.get('q')
         if query:
-            return CustomUser.objects.filter(job__name__iexact=query) | CustomUser.objects.filter(city__iexact=query) | CustomUser.objects.filter(first_name__icontains=query) | CustomUser.objects.filter(description__icontains= query)
+            return CustomUser.objects.filter(job__name__iexact =query) | CustomUser.objects.filter(city__iexact=query) | CustomUser.objects.filter(first_name__icontains=query) | CustomUser.objects.filter(description__icontains= query)
         else:
-            return CustomUser.objects.all()
+            return CustomUser.objects.filter(is_contractor=False)
 
 ''' Authenticate Views:'''
 

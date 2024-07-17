@@ -1,13 +1,13 @@
 {% extends "profile_base.html" %}
 {% block button %}
-    <a href="{% url "profile-edit" %}"><button type="button" class="btn btn-outline-success button-cool" style="
-        background-color: green;
-        ">
-        Edit Profile</button>
+    <a href="{% url "profile-edit" %}">
+        <button type="button" class="btn btn-outline-success button-cool" style="background-color: green;">
+            Edit Profile
+        </button>
     </a>
-    <a href="{% url "proposal-list" %}"><button type="button" class="btn btn-outline-primary button-cool" style="
-        background-color: rgb(20, 178, 218);
-        ">
-        Proposals</button>
+    <a href="{% url "proposal-list" status="accepted" %}">
+        <button type="button" class="btn btn-outline-primary button-cool" style="background-color: rgb(20, 178, 218);">
+            Jobs
+        </button>
     </a>
 {% endblock %}

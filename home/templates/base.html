@@ -41,6 +41,25 @@
                 </a>
                 </li>
               {% endif %}
+
+              {% if user.is_authenticated %}
+              <li class="nav-item" style="margin-left:2rem;">
+                <a class="nav-link" href="{% url "proposal-list" status="waiting" %}">
+                  <button type="button" class="btn btn-dark position-relative">
+                    Proposals
+                    {% if has_prop_wait %}
+                      <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+                        <span class="visually-hidden">New alerts</span>
+                      </span>
+
+                    {% endif %}
+
+                  </button>
+              </a>
+              </li>
+            {% endif %}
+
+
             </ul>
             <form class="d-flex" role="search" method="get" action="{% url "search" %} ">
               <input class="form-control me-2" name="q" type="text" placeholder="Search" aria-label="Search" style="border-width:3px;border-color:black; ">
